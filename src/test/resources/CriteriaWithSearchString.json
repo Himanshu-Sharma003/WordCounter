@@ -1,0 +1,8 @@
+
+  [
+    {
+      "searchString": "M",
+      "caseSensitive": false,
+      "searchCondition": "startsWith"
+    }
+  ]

@@ -1,0 +1,9 @@
+
+  [
+    {
+      "searchString": "M",
+      "caseSensitive": true,
+      "searchCondition": "startsWith",
+      "expression":"[A-Za-z]{5,}"
+    }
+  ]
