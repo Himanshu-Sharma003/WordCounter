@@ -75,4 +75,33 @@ public class WordCounterTest {
 		int resultSize = result.get(criterias.get(0)).size();
 		assertEquals(resultSize, 8);
 	}
+	
+	/**
+	 * This scenario check word count when Search Key
+	 * given.
+	 * 
+	 * @throws IOException
+	 */
+	@Test
+	public void testCountWordsGreatedthan5Characters() throws IOException {
+
+		InputStream inputStream = Thread.currentThread().getContextClassLoader()
+				.getResourceAsStream("CriteriaWithSearchStrCaseInsensitive.json");
+		// Reading Criteria file
+		byte[] jsonData = IOUtils.toByteArray(inputStream);
+
+		// create ObjectMapper instance
+		ObjectMapper objectMapper = new ObjectMapper();
+
+		// convert json string to object
+		List<Criteria> criterias = objectMapper.readValue(jsonData, new TypeReference<List<Criteria>>() {
+		});
+
+		URL inputURL = Thread.currentThread().getContextClassLoader().getResource("input.txt");
+
+		TextFileReader fileReader = new TextFileReader();
+		Map<Criteria, List<String>> result = fileReader.processFile(inputURL.getPath(), criterias);
+		int resultSize = result.get(criterias.get(0)).size();
+		assertEquals(resultSize, 77);
+	}
 }
