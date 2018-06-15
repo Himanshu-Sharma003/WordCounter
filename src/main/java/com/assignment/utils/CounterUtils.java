@@ -13,9 +13,23 @@ import com.assignment.model.Criteria;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Util class implementing logic to match individual row of the file with
+ * searchCriteria
+ *
+ */
 @Slf4j
 public class CounterUtils {
 
+	/**
+	 * Split the individual row into List of String (i.e. words) and apply search
+	 * criteria for matching.
+	 * 
+	 * @param input
+	 * @param searchCriteria
+	 * @param result
+	 * @return
+	 */
 	public static boolean searchWords(String input, List<Criteria> searchCriteria, Map<Criteria, List<String>> result) {
 		StringTokenizer token = new StringTokenizer(input);
 		while (token.hasMoreElements()) {
@@ -26,16 +40,20 @@ public class CounterUtils {
 	}
 
 	/**
+	 * Each String/word is checked against the Search criteria and if matched, word
+	 * is added to map with search criteria as Key of the map.
 	 * 
 	 * @param word
 	 * @param searchCriteria
+	 *            : Criteria to match
 	 * @param result
+	 *            : Map of searchCriteria and Matched words.
 	 */
 	private static void applyCriteria(String word, List<Criteria> searchCriteria, Map<Criteria, List<String>> result) {
 		searchCriteria.forEach(criteria -> {
 			if (condition(word, criteria)) {
 				log.debug("Criteria Matched, incrementing count");
-				List<String> matchedWords =  result.get(criteria) != null ?result.get(criteria) : new ArrayList<>();
+				List<String> matchedWords = result.get(criteria) != null ? result.get(criteria) : new ArrayList<>();
 				matchedWords.add(word);
 				result.put(criteria, matchedWords);
 			}
@@ -43,6 +61,8 @@ public class CounterUtils {
 	}
 
 	/**
+	 * Matches SeachString based on SearchConditon passed. Also, performs regular
+	 * expressions match if provided on the input string.
 	 * 
 	 * @param word
 	 * @param criteria

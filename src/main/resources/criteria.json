@@ -1,0 +1,19 @@
+
+  [
+    {
+      "searchString": "M",
+      "caseSensitive": true,
+      "searchCondition": "startsWith",
+      "expression":"[A-Za-z]{5,}"
+    },
+     {
+      "searchString": "p",
+      "caseSensitive": false,
+      "searchCondition": "startsWith",
+      "expression":"[A-Za-z]{3,}"
+    }
+    ,
+     {
+      "expression":"[A-Za-z]{5,}"
+    }
+  ]
